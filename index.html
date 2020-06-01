@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CTM Central</title>
 
-  <link
-      href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
-      rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&family=Chewy&display=swap" rel="stylesheet"/>
 
   <link rel="stylesheet" href="style.css" />
 
@@ -21,7 +18,7 @@
 <nav class="navbar">
   <ul class="navbar-nav">
     <li class="nav-item"><a href="#">Home</a></li>
-    <li class="nav-item"><a href="#">About</a></li>
+    <li class="nav-item"><a href="#" onclick="window.scrollBy({top: 540, left: 0, behavior: 'smooth'});">About</a></li>
 
     <!-- Dropdown -->
 
@@ -40,19 +37,19 @@
       </ul>
     </li>
 
-    <li class="nav-item">Login</li>
+    <li class="nav-item"><a href="login.html">Login</a></li>
   </ul>
 </nav>
 
 <header>
-  <img src="logo.png" class="logo" />
+  <h1 class="logo">CTM Central</h1>
   <h1>The Greatest CTM Experience<br />for Minecraft Bedrock</h1>
 
   <p>Play, Fight, Capture, and Win!</p>
 </header>
 
 <main>
-  <h3>Sailor Ipsum</h3>
+  <h3 id="about">Sailor Ipsum</h3>
   <p>
     Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast
     yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog
