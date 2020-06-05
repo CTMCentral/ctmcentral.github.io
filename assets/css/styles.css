@@ -6,3 +6,7 @@
   scroll-behavior: smooth;
 }
 
+.btn:not(:disabled):not(.disabled) {
+  background-image: url(screen-content-iphone-6.jpg;
+}
+
