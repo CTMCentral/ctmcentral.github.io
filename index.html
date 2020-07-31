@@ -1,96 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CTM Central</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&family=Chewy&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&family=Chewy&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 
-  <script defer src="app.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBHNluOTn2YW34U-41OV8FTghhK0SEPQgk",
+      authDomain: "ctm-central-backend.firebaseapp.com",
+      databaseURL: "https://ctm-central-backend.firebaseio.com",
+      projectId: "ctm-central-backend",
+      storageBucket: "ctm-central-backend.appspot.com",
+      messagingSenderId: "605481884448",
+      appId: "1:605481884448:web:4fc62dfcec7cf95a76d545"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <script src="app.js" defer></script>
 </head>
 
 <body class="light">
-<!-- Navbar -->
+  <!-- Navbar -->
 
-<nav class="navbar">
-  <ul class="navbar-nav">
-    <li class="nav-item"><a href="#">Home</a></li>
-    <li class="nav-item"><a href="#" onclick="window.scrollBy({top: 540, left: 0, behavior: 'smooth'});">About</a></li>
+  <nav class="navbar">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a href="#">Home</a></li>
+      <li class="nav-item"><a href="#" onclick="window.scrollBy({top: 540, left: 0, behavior: 'smooth'});">About</a>
+      </li>
 
-    <!-- Dropdown -->
+      <!-- Dropdown -->
 
-    <li class="nav-item has-dropdown">
-      <a href="#">Theme</a>
-      <ul class="dropdown">
-        <li class="dropdown-item">
-          <a id="light" href="#">light</a>
-        </li>
-        <li class="dropdown-item">
-          <a id="dark" href="#">dark</a>
-        </li>
-        <li class="dropdown-item">
-          <a id="solar" href="#">solarize</a>
-        </li>
-      </ul>
-    </li>
+      <li class="nav-item has-dropdown">
+        <a href="#">Theme</a>
+        <ul class="dropdown">
+          <li class="dropdown-item">
+            <a id="light" href="#">light</a>
+          </li>
+          <li class="dropdown-item">
+            <a id="dark" href="#">dark</a>
+          </li>
+          <li class="dropdown-item">
+            <a id="solar" href="#">solarize</a>
+          </li>
+        </ul>
+      </li>
 
-    <li class="nav-item"><a href="login.html">Login</a></li>
-  </ul>
-</nav>
+      <li class="nav-item">
+        <section id="whenSignedOut">
+          <a id="signInBtn" href="#">Login</a>
+        </section>
+        <section id="whenSignedIn" hidden="true">
+          <a id="signOutBtn" href="#">Log Out</a>
+        </section>
+      </li>
+    </ul>
+  </nav>
 
-<header>
-  <h1 class="logo">CTM Central</h1>
-  <h1>The Greatest CTM Experience<br />for Minecraft Bedrock</h1>
+  <header>
+    <h1 class="logo">CTM Central</h1>
+    <h1>The Greatest CTM Experience<br />for Minecraft Bedrock</h1>
 
-  <p>Play, Fight, Capture, and Win!</p>
-</header>
+    <p>Play, Fight, Capture, and Win!</p>
+  </header>
 
-<main>
-  <h3 id="about">Sailor Ipsum</h3>
-  <p>
-    Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast
-    yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog
-    yardarm hempen halter furl. Swab barque interloper chantey doubloon
-    starboard grog black jack gangway rutters.
-  </p>
-  <p>
-    Deadlights jack lad schooner scallywag dance the hempen jig carouser
-    broadside cable strike colors. Bring a spring upon her cable holystone
-    blow the man down spanker Shiver me timbers to go on account lookout
-    wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot
-    yardarm spyglass sheet transom heave to.
-  </p>
-  <p>
-    Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway.
-    Case shot Shiver me timbers gangplank crack Jennys tea cup ballast
-    Blimey lee snow crow's nest rutters. Fluke jib scourge of the seven seas
-    boatswain schooner gaff booty Jack Tar transom spirits.
-  </p>
+  <main>
+    <h3 id="about">Sailor Ipsum</h3>
+    <p>
+      Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast
+      yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog
+      yardarm hempen halter furl. Swab barque interloper chantey doubloon
+      starboard grog black jack gangway rutters.
+    </p>
+    <p>
+      Deadlights jack lad schooner scallywag dance the hempen jig carouser
+      broadside cable strike colors. Bring a spring upon her cable holystone
+      blow the man down spanker Shiver me timbers to go on account lookout
+      wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot
+      yardarm spyglass sheet transom heave to.
+    </p>
+    <p>
+      Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway.
+      Case shot Shiver me timbers gangplank crack Jennys tea cup ballast
+      Blimey lee snow crow's nest rutters. Fluke jib scourge of the seven seas
+      boatswain schooner gaff booty Jack Tar transom spirits.
+    </p>
 
-  <h3>Sailor Ipsum</h3>
+    <h3>Sailor Ipsum</h3>
 
-  <p>
-    Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast
-    yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog
-    yardarm hempen halter furl. Swab barque interloper chantey doubloon
-    starboard grog black jack gangway rutters.
-  </p>
-  <p>
-    Deadlights jack lad schooner scallywag dance the hempen jig carouser
-    broadside cable strike colors. Bring a spring upon her cable holystone
-    blow the man down spanker Shiver me timbers to go on account lookout
-    wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot
-    yardarm spyglass sheet transom heave to.
-  </p>
-  <p>
-    Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway.
-    Case shot Shiver me timbers gangplank crack Jennys tea cup ballast
-    Blimey lee snow crow's nest rutters. Fluke jib scourge of the seven seas
-    boatswain schooner gaff booty Jack Tar transom spirits.
-  </p>
-</main>
+    <p>
+      Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast
+      yardarm. Pinnace holystone mizzenmast quarter crow's nest nipperkin grog
+      yardarm hempen halter furl. Swab barque interloper chantey doubloon
+      starboard grog black jack gangway rutters.
+    </p>
+    <p>
+      Deadlights jack lad schooner scallywag dance the hempen jig carouser
+      broadside cable strike colors. Bring a spring upon her cable holystone
+      blow the man down spanker Shiver me timbers to go on account lookout
+      wherry doubloon chase. Belay yo-ho-ho keelhaul squiffy black spot
+      yardarm spyglass sheet transom heave to.
+    </p>
+    <p>
+      Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway.
+      Case shot Shiver me timbers gangplank crack Jennys tea cup ballast
+      Blimey lee snow crow's nest rutters. Fluke jib scourge of the seven seas
+      boatswain schooner gaff booty Jack Tar transom spirits.
+    </p>
+  </main>
 </body>
+
 </html>
